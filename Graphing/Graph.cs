@@ -17,8 +17,6 @@ namespace Graphing
         protected float Scale { get { return total_scale; } }
 
         private int x_increment, y_increment; //Spacing on the X and Y axis
-        //public int X_Increment { get { return x_increment; } }
-        //public int Y_Increment { get { return y_increment; } } 
 
         private int x_max, y_max;
 
