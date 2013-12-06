@@ -1,0 +1,6 @@
+C:\Users\Josh\Documents\Visual Studio 2010\Projects\Graphing\Graphing\bin\x86\Debug\Graphing.dll
+C:\Users\Josh\Documents\Visual Studio 2010\Projects\Graphing\Graphing\bin\x86\Debug\Graphing.pdb
+C:\Users\Josh\Documents\Visual Studio 2010\Projects\Graphing\Graphing\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Josh\Documents\Visual Studio 2010\Projects\Graphing\Graphing\obj\x86\Debug\Graphing.dll
+C:\Users\Josh\Documents\Visual Studio 2010\Projects\Graphing\Graphing\obj\x86\Debug\Graphing.pdb
+C:\Users\Josh\Documents\Visual Studio 2010\Projects\Graphing\Graphing\obj\x86\Debug\Graphing.csprojResolveAssemblyReference.cache
