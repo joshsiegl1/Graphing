@@ -60,11 +60,9 @@ namespace Graphing
         {
             if (point.X > Points[Points.Count - 1].X) //Check to make sure the point we are trying to add is greater on the X than the previous point
             {
-                if (point.X <= x_max && point.Y <= y_max && point.X >= 0 && point.Y >= 0)
-                    Points.Add(point * total_scale);
-                else throw new PointSequenceInvalidException();
+                add_point(point); 
             }
-            else throw new PointSequenceInvalidException(); 
+            else throw new PointOutofBoundsException(); 
         }
 
         public void Set_Scale(float scale)
@@ -82,29 +80,35 @@ namespace Graphing
 
         public virtual void Plot(List<Vector2> points)
         {
-            int index = 0; 
-            foreach (Vector2 p in points)
-            {
-                if (p.X <= x_max && p.Y <= y_max && p.X >= 0 && p.Y >= 0)
-                {
-                    if (index > 0)         //check to make sure this is not the first element in the list
-                    {
-                        if (p.X > points[index - 1].X)      //check to make sure current element is greater than previous element on the X axis
-                            Points.Add(p * total_scale);
-                        else throw new PointSequenceInvalidException();
-                    }
-                    else if (Points.Count > 0)       //if theres already points in the list then check the previous point
-                    {
-                        if (p.X > Points[Points.Count - 1].X)
-                            Points.Add(p * total_scale);
-                        else throw new PointSequenceInvalidException();
-                    }
-                    else Points.Add(p * total_scale); //if first element just add it
-                }
-                else throw new PointSequenceInvalidException(); 
-                index++; 
-            }
+            foreach (Vector2 v in points)
+                add_point(v); 
+
+            Points = OrderX(Points, new List<Vector2>()); 
         }
+
+        private List<Vector2> OrderX(List<Vector2> vectors, List<Vector2> newList)  //Recursive function that orders the X values of a list of Vector2s from lowest to highest
+        {
+            Vector2 lowest = vectors[0]; 
+            for (int i = 0; i < vectors.Count; i++)
+            {
+                if (vectors[i].X < lowest.X)
+                    lowest = vectors[i]; 
+            }
+
+            vectors.Remove(lowest); 
+            newList.Add(lowest);
+
+            if (vectors.Count == 0)
+                return newList;
+            else return OrderX(vectors, newList); 
+        }
+
+        protected void add_point(Vector2 point)
+        {
+            if (point.X <= x_max && point.Y <= y_max && point.X >= 0 && point.Y >= 0)
+                Points.Add(point * total_scale);
+            else throw new PointOutofBoundsException();
+        } 
 
         public virtual void Draw(SpriteBatch sbatch)
         {
